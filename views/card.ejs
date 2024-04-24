@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Posts</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Dark theme */
+        body {
+            background-color: #111;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="p-4 m-5">
+    <a href="/" class="text-blue-400">return home..</a>
+    <h1 class="text-blue-400 text-3xl">All Users</h1>
+    <% if(allUsers.length > 0) {%>
+        <div class="flex flex-wrap">
+            <% allUsers.forEach((user) => { %>  
+                <div class="max-w-xs m-5 bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+                    <div class="w-full bg-gray-900 h-60 rounded-lg overflow-hidden p-3">
+                        <img src="<%= user.image %>" class="w-full h-full object-cover object-top" alt="">
+                    </div>
+                    <div class="p-2">
+                        <h2 class="text-xl font-semibold mb-2"><%= user.name %></h2>
+                        <p class="text-gray-400 mb-4 text-sm"><%= user.email %></p>
+                    </div>
+                    <div class="flex gap-3 p-2">
+                        <a href="/api/delete/<%= user._id %>" class="text-red-400">Delete</a>
+                        <a href="/api/update" class="text-yellow-400">Edit</a>
+                    </div>
+                </div>
+            <%  }); %>
+        </div>
+    <% }else{ %>
+        <h3 class="text-green-500">User not yet</h3>
+    <% } %>
+</body>
+</html>
